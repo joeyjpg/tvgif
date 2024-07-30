@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random GIF</title>
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Random GIF of the Hour">
+    <meta property="og:description" content="Check out this random GIF that changes every hour!">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+
+    <script>
+        const gifs = ['gif1.gif', 'gif2.gif', 'gif3.gif']; // Add your GIF filenames here
+
+        function getRandomGif() {
+            const date = new Date();
+            const hour = date.getHours();
+            const gifIndex = hour % gifs.length;
+            return gifs[gifIndex];
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const gif = getRandomGif();
+            document.getElementById('random-gif').src = gif;
+            document.querySelector('meta[property="og:image"]').setAttribute('content', gif);
+            document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href);
+        });
+    </script>
+</head>
+<body>
+    <h1>Random GIF of the Hour</h1>
+    <img id="random-gif" src="" alt="Random GIF">
+</body>
+</html>
