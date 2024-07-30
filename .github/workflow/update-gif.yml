@@ -1,0 +1,32 @@
+name: Update GIF
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Run every hour
+  push:
+    branches:
+      - main
+
+jobs:
+  update-gif:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set random GIF
+      run: |
+        gifs=('gif1.gif' 'gif2.gif' 'gif3.gif') # Add your GIF filenames here
+        hour=$(date -u +%H)
+        gif=${gifs[hour % ${#gifs[@]}]}
+        echo "Copying $gif to curgif.gif"
+        cp $gif curgif.gif
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add curgif.gif
+        git commit -m "Update curgif.gif to $gif"
+        git push
