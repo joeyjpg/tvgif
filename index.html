@@ -3,14 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random GIF</title>
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Random GIF of the Hour">
-    <meta property="og:description" content="Check out this random GIF that changes every hour!">
-    <meta property="og:image" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="">
-
+    <title>Redirecting to Random GIF</title>
     <script>
         const gifs = ['gif1.gif', 'gif2.gif', 'gif3.gif']; // Add your GIF filenames here
 
@@ -21,16 +14,11 @@
             return gifs[gifIndex];
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const gif = getRandomGif();
-            document.getElementById('random-gif').src = gif;
-            document.querySelector('meta[property="og:image"]').setAttribute('content', gif);
-            document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href);
-        });
+        const gif = getRandomGif();
+        window.location.replace(gif);
     </script>
 </head>
 <body>
-    <h1>Random GIF of the Hour</h1>
-    <img id="random-gif" src="" alt="Random GIF">
+    <h1>Redirecting to a random GIF...</h1>
 </body>
 </html>
