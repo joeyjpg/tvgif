@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to Random GIF</title>
+    <title>Random GIF</title>
+</head>
+<body>
     <script>
-        const gifs = ['gif1.gif', 'gif2.gif', 'gif3.gif']; // Add your GIF filenames here
+        const gifs = [
+            'https://yourusername.github.io/random-gif-site/gif1.gif',
+            'https://yourusername.github.io/random-gif-site/gif2.gif',
+            'https://yourusername.github.io/random-gif-site/gif3.gif'
+            // Add your GIF URLs here
+        ];
 
         function getRandomGif() {
             const date = new Date();
-            const hour = date.getHours();
-            const gifIndex = hour % gifs.length;
+            const hour = date.getUTCHours(); // Get the current hour in UTC
+            const gifIndex = hour % gifs.length; // Cycle through the GIFs
             return gifs[gifIndex];
         }
 
         const gif = getRandomGif();
-        window.location.replace(gif);
+        window.location.replace(gif); // Redirect to the GIF URL
     </script>
-</head>
-<body>
-    <h1>Redirecting to a random GIF...</h1>
 </body>
 </html>
